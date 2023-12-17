@@ -3,10 +3,21 @@ import Home from "./components/pages/Home";
 import Action from "./components/pages/Action";
 import NotFound from "./components/pages/NotFound";
 import MoviePage from "./components/pages/MoviePage";
+import NavBar from "./components/NavBar";
 
 function App() {
+  const menu = [
+    "Home",
+    "Action",
+    "Adventure",
+    "Sci-Fiction",
+    "Comedy",
+    "Anime",
+    "TV Series",
+  ];
   return (
     <>
+      <NavBar navList={menu} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="action" element={<Action />} />
