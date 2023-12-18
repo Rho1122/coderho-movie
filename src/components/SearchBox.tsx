@@ -18,13 +18,21 @@ const SearchBox = ({
 }: SearchBoxProps) => {
   return (
     <HStack paddingX={3}>
-      <Button size="sm" marginRight={2} onClick={onMovie} padding={2}>
+      <Button
+        size="sm"
+        marginRight={2}
+        onClick={onMovie}
+        padding={2}
+        colorScheme="blue"
+      >
         Movies
       </Button>
-      <Button onClick={onTv}>TV Series</Button>
+      <Button size="sm" onClick={onTv}>
+        TV Series
+      </Button>
       <Box paddingLeft={3} height="px40">
         <HStack>
-          <Button onClick={onPrev}>
+          <Button size="sm" onClick={onPrev}>
             <ChevronLeftIcon />
             Prev
           </Button>

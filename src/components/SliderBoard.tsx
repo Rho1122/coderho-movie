@@ -16,6 +16,7 @@ const SliderBoard = ({
     pageNumber,
     sortBy,
   });
+
   return (
     <div id="carouselExampleCaptions" className="carousel slide">
       <div className="carousel-indicators">
