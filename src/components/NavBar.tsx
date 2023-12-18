@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface NavBarProps {
   navList: string[];
 }
 const NavBar = ({ navList }: NavBarProps) => {
+  const [navIndex, setNavIndex] = useState(0);
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary"
@@ -30,8 +32,13 @@ const NavBar = ({ navList }: NavBarProps) => {
               <li className="nav-item" key={index}>
                 <Link
                   to={item === "Home" ? "/" : `/${item}`}
-                  className={index === 0 ? "nav-link active" : "nav-link"}
+                  className={
+                    navIndex === index ? "nav-link active" : "nav-link"
+                  }
                   aria-current="page"
+                  onClick={() => {
+                    setNavIndex(index);
+                  }}
                 >
                   {item}
                 </Link>

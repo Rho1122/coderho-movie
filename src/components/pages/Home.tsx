@@ -1,21 +1,32 @@
-import { Box } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 
 const Home = () => {
-  const movies = [1, 2, 3, 4, 5, 6];
   return (
-    <div>
-      <p className="btn btn-danger p-2">home page</p>
-      <Box>
-        {movies.map((movie) => (
-          <Link to={`/movie/${movie}`} key={movie}>
-            <div className="btn btn-primary m-2 px-5" key={movie}>
-              {movie}
-            </div>
-          </Link>
-        ))}
-      </Box>
-    </div>
+    <>
+      <Grid
+        templateAreas={{
+          base: `"slider" "main" "footer"`,
+          lg: `"slider slider" "main aside" "footer footer"`,
+        }}
+        templateColumns={{ base: "1fr", lg: "1fr 400px" }}
+        gap={2}
+      >
+        <GridItem area={"slider"} bgColor="yellow">
+          Slider
+        </GridItem>
+        <GridItem area={"main"} bgColor="purple">
+          Main
+        </GridItem>
+        <Show above="lg">
+          <GridItem area={"aside"} bgColor="orange">
+            Aside
+          </GridItem>
+        </Show>
+        <GridItem area={"footer"} bgColor="grey">
+          Footer
+        </GridItem>
+      </Grid>
+    </>
   );
 };
 
