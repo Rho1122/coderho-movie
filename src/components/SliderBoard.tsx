@@ -21,7 +21,7 @@ const SliderBoard = ({
   const SliderSkel = [1, 2, 3];
 
   return (
-    <div id="carouselExampleCaptions" className="carousel slide">
+    <div id="carouselExampleCaptions" className="carousel slide w-100">
       <div className="carousel-indicators">
         <button
           type="button"

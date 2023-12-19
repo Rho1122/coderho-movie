@@ -4,6 +4,7 @@ import Action from "./components/pages/Action";
 import NotFound from "./components/pages/NotFound";
 import MoviePage from "./components/pages/MoviePage";
 import NavBar from "./components/NavBar";
+import { Grid } from "@chakra-ui/react";
 
 function App() {
   const menu = [
@@ -17,7 +18,9 @@ function App() {
   ];
   return (
     <>
-      <NavBar navList={menu} />
+      <Grid>
+        <NavBar navList={menu} />
+      </Grid>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="action" element={<Action />} />

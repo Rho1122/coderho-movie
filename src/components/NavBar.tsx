@@ -8,7 +8,7 @@ const NavBar = ({ navList }: NavBarProps) => {
   const [navIndex, setNavIndex] = useState(0);
   return (
     <nav
-      className="navbar navbar-expand-lg bg-body-tertiary"
+      className="navbar navbar-expand-lg bg-body-tertiary w-100"
       data-bs-theme="dark"
     >
       <div className="container-fluid">
