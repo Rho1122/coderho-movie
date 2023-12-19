@@ -17,7 +17,7 @@ const MovieCards = ({
       <CardHeader as="h3" fontSize="md" paddingX={3} paddingTop={2}>
         {cardHeading}
       </CardHeader>
-      <Text padding={3}>{cardOverview}</Text>
+      <Text paddingX={3}>{cardOverview}</Text>
     </Card>
   );
 };
