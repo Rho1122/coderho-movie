@@ -4,6 +4,7 @@ import { useState } from "react";
 import SearchBox from "../SearchBox";
 import MovieDisplayBoard from "../MovieDisplayBoard";
 import SortMovie from "../SortMovie";
+import SideBar from "../SideBar";
 
 const Home = () => {
   const [movieCat, setMovieCat] = useState("movie");
@@ -73,8 +74,20 @@ const Home = () => {
           />
         </GridItem>
         <Show above="lg">
-          <GridItem area={"aside"} bgColor="orange">
-            Aside
+          <GridItem area={"aside"} marginRight={3}>
+            <SideBar
+              movieCategory="movie"
+              pageNumber={1}
+              sortBy="popularity"
+              pageTitle="Latest Movies"
+            />
+
+            <SideBar
+              movieCategory="tv"
+              pageNumber={1}
+              sortBy="popularity"
+              pageTitle="TV Series"
+            />
           </GridItem>
         </Show>
         <GridItem area={"footer"} bgColor="grey">

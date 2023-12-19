@@ -1,4 +1,5 @@
 import useFetch from "../hooks/useFetch";
+import SliderSkeleton from "./skeletons/SliderSkeleton";
 
 interface SliderBoardProps {
   movieCategory: string;
@@ -11,11 +12,13 @@ const SliderBoard = ({
   pageNumber,
   sortBy,
 }: SliderBoardProps) => {
-  const { fetchedMovies, IMG_PATH } = useFetch({
+  const { isLoading, fetchedMovies, IMG_PATH } = useFetch({
     movieCategory,
     pageNumber,
     sortBy,
   });
+
+  const SliderSkel = [1, 2, 3];
 
   return (
     <div id="carouselExampleCaptions" className="carousel slide">
@@ -42,6 +45,7 @@ const SliderBoard = ({
         ></button>
       </div>
       <div className="carousel-inner">
+        {isLoading && SliderSkel.map((skel) => <SliderSkeleton key={skel} />)}
         {fetchedMovies?.map((movie, index) => (
           <div
             className={index === 0 ? "carousel-item active" : "carousel-item"}
