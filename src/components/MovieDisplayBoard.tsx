@@ -22,7 +22,7 @@ const MovieDisplayBoard = ({
   const Skeletions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   return (
     <SimpleGrid
-      columns={{ base: 2, sm: 3, md: 5, lg: 6, xl: 7 }}
+      columns={{ base: 2, sm: 3, md: 4, lg: 5, xl: 6 }}
       gap={4}
       padding={4}
     >

@@ -1,10 +1,11 @@
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import SliderBoard from "../SliderBoard";
 import { useState } from "react";
 import SearchBox from "../SearchBox";
 import MovieDisplayBoard from "../MovieDisplayBoard";
 import SortMovie from "../SortMovie";
 import SideBar from "../SideBar";
+import NavBar from "../NavBar";
 
 const Home = () => {
   const [movieCat, setMovieCat] = useState("movie");
@@ -36,64 +37,62 @@ const Home = () => {
     setPageNo(pageNo + 1);
   };
 
-  const handlePrev = () => {
-    setPageNo(pageNo - 1);
-  };
+  const menu = [
+    "Home",
+    "Action",
+    "Adventure",
+    "Sci-Fiction",
+    "Comedy",
+    "Anime",
+    "TV Series",
+  ];
   return (
     <>
-      <Grid
-        templateAreas={{
-          base: `"slider" "main" "footer"`,
-          lg: `"slider slider" "main aside" "footer footer"`,
-        }}
-        templateColumns={{ base: "1fr", lg: "1fr 450px" }}
-        gap={2}
-      >
-        <GridItem area={"slider"}>
-          <SliderBoard
-            movieCategory={"movie"}
-            pageNumber={1}
-            sortBy={sortMovie}
-          />
-        </GridItem>
-        <GridItem area={"main"}>
-          <HStack paddingLeft={4}>
-            <SortMovie onSelected={handleSortOrder} sortOrder={sortOrderList} />
-            <SearchBox
-              onMovie={handleMovie}
-              onTv={handleTv}
-              onNext={handleNext}
-              onPrev={handlePrev}
-              pageCount={pageNo}
-            />
-          </HStack>
-          <MovieDisplayBoard
-            movieCategory={movieCat}
-            pageNumber={pageNo}
-            sortBy={sortMovie}
-          />
-        </GridItem>
-        <Show above="lg">
-          <GridItem area={"aside"} marginRight={3}>
-            <SideBar
-              movieCategory="movie"
-              pageNumber={1}
-              sortBy="popularity"
-              pageTitle="Latest Movies"
-            />
+      <SimpleGrid>
+        <NavBar navList={menu} />
+      </SimpleGrid>
 
-            <SideBar
-              movieCategory="tv"
-              pageNumber={1}
-              sortBy="popularity"
-              pageTitle="TV Series"
-            />
-          </GridItem>
-        </Show>
-        <GridItem area={"footer"} bgColor="grey">
-          Footer
-        </GridItem>
-      </Grid>
+      <SimpleGrid>
+        <SliderBoard
+          movieCategory={"movie"}
+          pageNumber={1}
+          sortBy={sortMovie}
+        />
+      </SimpleGrid>
+
+      <SimpleGrid paddingX={3} paddingTop={2}>
+        <SortMovie onSelected={handleSortOrder} sortOrder={sortOrderList} />
+        <SearchBox
+          onMovie={handleMovie}
+          onTv={handleTv}
+          onNext={handleNext}
+          pageCount={pageNo}
+        />
+      </SimpleGrid>
+      <SimpleGrid minChildWidth="80vw">
+        <MovieDisplayBoard
+          movieCategory={movieCat}
+          pageNumber={pageNo}
+          sortBy={sortMovie}
+        />
+        <Box>
+          <SideBar
+            movieCategory="movie"
+            pageNumber={1}
+            sortBy="popularity"
+            pageTitle="Latest Movies"
+          />
+
+          <SideBar
+            movieCategory="tv"
+            pageNumber={1}
+            sortBy="popularity"
+            pageTitle="TV Series"
+          />
+        </Box>
+      </SimpleGrid>
+
+      <SimpleGrid>Footer</SimpleGrid>
     </>
   );
 };

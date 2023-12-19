@@ -23,7 +23,7 @@ const SideBar = ({
 
   const sideBarSkeleton = [1, 2, 3, 4, 5, 6, 7];
   return (
-    <Box paddingTop="70px">
+    <Box>
       <Heading as="h4" size="lg" marginLeft={3}>
         {pageTitle}
       </Heading>
