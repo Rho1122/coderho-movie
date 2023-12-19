@@ -21,15 +21,22 @@ const MovieDisplayBoard = ({
   });
   const Skeletions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   return (
-    <SimpleGrid columns={{ sm: 3, md: 5, lg: 6, xl: 7 }} gap={3} padding={4}>
+    <SimpleGrid
+      columns={{ base: 2, sm: 3, md: 5, lg: 6, xl: 7 }}
+      gap={4}
+      padding={4}
+    >
       {isLoading && Skeletions.map((skel) => <MovieBoardSkeleton key={skel} />)}
       {fetchedMovies?.map((movie) => (
         <MovieCards
           cardImage={IMG_PATH + movie.poster_path}
           cardHeading={movie.title ? movie.title : movie.original_name}
-          cardOverview={
-            movie.overview ? movie.overview.slice(0, 80) : movie.overview
+          cardDate={
+            movie.release_date
+              ? movie.release_date.slice(0, 4)
+              : movie.first_air_date.slice(0, 4)
           }
+          CardVote={movie.vote_average}
           key={movie.id}
         />
       ))}

@@ -46,7 +46,7 @@ const Home = () => {
           base: `"slider" "main" "footer"`,
           lg: `"slider slider" "main aside" "footer footer"`,
         }}
-        templateColumns={{ base: "1fr", lg: "1fr 350px" }}
+        templateColumns={{ base: "1fr", lg: "1fr 450px" }}
         gap={2}
       >
         <GridItem area={"slider"}>

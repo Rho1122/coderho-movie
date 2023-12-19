@@ -12,6 +12,7 @@ interface results {
     vote_count: number;
     overview: string;
     original_name: string;
+    first_air_date: string
   }
 
   interface useFetchProps {
