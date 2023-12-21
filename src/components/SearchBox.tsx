@@ -21,7 +21,7 @@ const SearchBox = ({ onMovie, onTv, onNext, pageCount }: SearchBoxProps) => {
         Movies
       </Button>
       <Button size="sm" onClick={onTv}>
-        TV Series
+        TV
       </Button>
       <Box paddingLeft={3} height="px40">
         <HStack>

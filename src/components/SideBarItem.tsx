@@ -12,7 +12,7 @@ const SideBarItem = ({
   sideBarOverview,
 }: SideBarItemProps) => {
   return (
-    <HStack margin={2} bgColor="#eefaeb">
+    <HStack margin={2}>
       <Box
         borderRadius={4}
         overflow="hid

@@ -18,27 +18,19 @@ const MovieCards = ({
       <Image src={cardImage} />
       <HStack paddingX={2} justifyContent="space-between">
         <Box>
-          <Text
-            bgColor="orange"
-            padding={1}
-            margin={1}
-            borderRadius={4}
-            fontSize="10px"
-            color="white"
-          >
+          <Text padding={1} margin={1} fontWeight={700} fontSize="10px">
             {cardDate}
           </Text>
         </Box>
         <Box>
           <Text
-            bgColor={CardVote > 7 ? "#49ad57" : "#f25524"}
             padding={1}
             margin={1}
-            borderRadius={4}
+            fontWeight={700}
             fontSize="10px"
-            color="white"
+            color="orange"
           >
-            {CardVote}
+            <i className={"fa-solid fa-star"}></i> {CardVote}
           </Text>
         </Box>
       </HStack>

@@ -5,7 +5,6 @@ import SearchBox from "../SearchBox";
 import MovieDisplayBoard from "../MovieDisplayBoard";
 import SortMovie from "../SortMovie";
 import SideBar from "../SideBar";
-import NavBar from "../NavBar";
 
 const Home = () => {
   const [movieCat, setMovieCat] = useState("movie");
@@ -37,25 +36,12 @@ const Home = () => {
     setPageNo(pageNo + 1);
   };
 
-  const menu = [
-    "Home",
-    "Action",
-    "Adventure",
-    "Sci-Fiction",
-    "Comedy",
-    "Anime",
-    "TV Series",
-  ];
   return (
     <>
       <SimpleGrid>
-        <NavBar navList={menu} />
-      </SimpleGrid>
-
-      <SimpleGrid>
         <SliderBoard
-          movieCategory={"movie"}
-          pageNumber={1}
+          movieCategory={movieCat}
+          pageNumber={pageNo}
           sortBy={sortMovie}
         />
       </SimpleGrid>
@@ -69,7 +55,7 @@ const Home = () => {
           pageCount={pageNo}
         />
       </SimpleGrid>
-      <SimpleGrid minChildWidth="80vw">
+      <SimpleGrid>
         <MovieDisplayBoard
           movieCategory={movieCat}
           pageNumber={pageNo}

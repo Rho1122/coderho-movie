@@ -25,6 +25,7 @@ const useFetch = ({movieCategory, pageNumber, sortBy}: useFetchProps) => {
     const [fetchedMovies, setFetchedMovies] = useState<results[]>();
     const [isLoading, setIsLoading] = useState(false);
     const IMG_PATH = "https://image.tmdb.org/t/p/original/"; 
+    const POSTER_IMG_PATH = "https://image.tmdb.org/t/p/w200/"; 
     const API_KEY = "67b5f626044ae34bc73f9ea8511cdfd2";
 
 useEffect(()=>{
@@ -43,7 +44,7 @@ useEffect(()=>{
             setIsLoading(false)
         })
 },[movieCategory, pageNumber, sortBy])
-  return {fetchedMovies, isLoading, IMG_PATH, setFetchedMovies, setIsLoading, movieCategory, pageNumber, sortBy}
+  return {fetchedMovies, isLoading, IMG_PATH, POSTER_IMG_PATH, setFetchedMovies, setIsLoading, movieCategory, pageNumber, sortBy}
 }
 
 export default useFetch
