@@ -2,6 +2,7 @@ import { SimpleGrid } from "@chakra-ui/react";
 import useFetch from "../hooks/useFetch";
 import MovieCards from "./MovieCards";
 import MovieBoardSkeleton from "./skeletons/MovieBoardSkeleton";
+import { Link } from "react-router-dom";
 
 interface MovieDisplayBoardProps {
   movieCategory: string;
@@ -27,23 +28,28 @@ const MovieDisplayBoard = ({
       padding={4}
     >
       {isLoading && Skeletions.map((skel) => <MovieBoardSkeleton key={skel} />)}
-      {fetchedMovies?.map((movie) => (
-        <MovieCards
-          cardImage={POSTER_IMG_PATH + movie.poster_path}
-          cardHeading={
-            movie.title?.length > 15
-              ? movie.title.slice(0, 15) + ".."
-              : movie.original_name || movie.title
-          }
-          cardDate={
-            movie.release_date
-              ? movie.release_date.slice(0, 4)
-              : movie.first_air_date.slice(0, 4)
-          }
-          CardVote={movie.vote_average}
-          key={movie.id}
-        />
-      ))}
+
+      {fetchedMovies?.map((movie) => {
+        return (
+          <Link to={`/movie/${movie.id}`} key={movie.id}>
+            <MovieCards
+              cardImage={POSTER_IMG_PATH + movie.poster_path}
+              cardHeading={
+                movie.title?.length > 15
+                  ? movie.title.slice(0, 15) + ".."
+                  : movie.original_name || movie.title
+              }
+              cardDate={
+                movie.release_date
+                  ? movie.release_date.slice(0, 4)
+                  : movie.first_air_date.slice(0, 4)
+              }
+              CardVote={movie.vote_average}
+              key={movie.id}
+            />
+          </Link>
+        );
+      })}
     </SimpleGrid>
   );
 };

@@ -58,11 +58,14 @@ const SliderBoard = ({
                     ? movies.overview.slice(0, 150) + "..."
                     : movies.overview}
                 </p>
-                <button className="btn btn-primary">Watch Now</button>
+                <div className="btn btn-primary">
+                  <i className="fa-regular fa-circle-play"></i> Watch Now
+                </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="slider-shadow"></div>
       </div>
     </>
   );
