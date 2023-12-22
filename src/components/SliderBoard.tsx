@@ -41,8 +41,6 @@ const SliderBoard = ({
           }}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
           className="mySwiper"
         >
           {fetchedMovies?.map((movies, index) => (
@@ -55,7 +53,11 @@ const SliderBoard = ({
               />
               <div className="info-box">
                 <h1 className="slide-title">{movies.title}</h1>
-                <p>{movies.overview}</p>
+                <p>
+                  {movies.overview
+                    ? movies.overview.slice(0, 150) + "..."
+                    : movies.overview}
+                </p>
                 <button className="btn btn-primary">Watch Now</button>
               </div>
             </SwiperSlide>

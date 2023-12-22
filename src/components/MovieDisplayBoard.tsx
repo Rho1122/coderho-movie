@@ -30,7 +30,11 @@ const MovieDisplayBoard = ({
       {fetchedMovies?.map((movie) => (
         <MovieCards
           cardImage={POSTER_IMG_PATH + movie.poster_path}
-          cardHeading={movie.title ? movie.title : movie.original_name}
+          cardHeading={
+            movie.title.length > 15
+              ? movie.title.slice(0, 15) + ".."
+              : movie.original_name || movie.title
+          }
           cardDate={
             movie.release_date
               ? movie.release_date.slice(0, 4)
