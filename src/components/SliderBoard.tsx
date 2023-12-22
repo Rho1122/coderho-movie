@@ -1,5 +1,13 @@
+import {
+  A11y,
+  Navigation,
+  Pagination,
+  Scrollbar,
+  Autoplay,
+} from "swiper/modules";
 import useFetch from "../hooks/useFetch";
-import SliderSkeleton from "./skeletons/SliderSkeleton";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
 
 interface SliderBoardProps {
   movieCategory: string;
@@ -12,91 +20,49 @@ const SliderBoard = ({
   pageNumber,
   sortBy,
 }: SliderBoardProps) => {
-  const { isLoading, fetchedMovies, IMG_PATH } = useFetch({
+  const { fetchedMovies, IMG_PATH } = useFetch({
     movieCategory,
     pageNumber,
     sortBy,
   });
 
-  const SliderSkel = [1, 2, 3];
-
   return (
-    <div id="carouselExampleCaptions" className="carousel slide w-100">
-      <div className="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="0"
-          className="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
-      </div>
-      <div className="carousel-inner">
-        {isLoading && SliderSkel.map((skel) => <SliderSkeleton key={skel} />)}
-        {fetchedMovies?.map((movie, index) => (
-          <div
-            className={index === 0 ? "carousel-item active" : "carousel-item"}
-            key={index}
-          >
-            <img
-              src={IMG_PATH + movie.backdrop_path}
-              className="slider-image d-block w-100"
-              alt="..."
-            />
-            <div className="slider-caption carousel-caption d-none d-md-block">
-              <h3 className="fs-1 text-uppercase justify-content=left">
-                {movie.title ? movie.title : movie.original_name}
-              </h3>
-              <div className="slider-details d-flex">
-                <button className="btn btn-primary">HD</button>
-                <div className=" slider-details text-center p-2">
-                  <i className="slider-details fa-solid fa-star"></i>
-                  <span className="py-2">{movie.vote_average}</span>
-                </div>{" "}
-                <div className="slider-details p-2">
-                  {movie.release_date
-                    ? movie.release_date.slice(0, 4)
-                    : movie.release_date}
-                </div>
+    <>
+      <div className="swiper-cover">
+        <Swiper
+          modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={50}
+          slidesPerView={1}
+          loop={true}
+          navigation
+          autoplay={{
+            delay: 4500,
+            disableOnInteraction: false,
+          }}
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true }}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+          className="mySwiper"
+        >
+          {fetchedMovies?.map((movies, index) => (
+            <SwiperSlide virtualIndex={index} key={index}>
+              <img
+                src={IMG_PATH + movies.backdrop_path}
+                alt={movies.title}
+                key={index}
+                className="slide-image"
+              />
+              <div className="info-box">
+                <h1 className="slide-title">{movies.title}</h1>
+                <p>{movies.overview}</p>
+                <button className="btn btn-primary">Watch Now</button>
               </div>
-              <p>{movie.overview}</p>
-              <button className="btn btn-primary p-3">Watch Now</button>
-            </div>
-          </div>
-        ))}
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-      <button
-        className="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev"
-      >
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Previous</span>
-      </button>
-      <button
-        className="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next"
-      >
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Next</span>
-      </button>
-    </div>
+    </>
   );
 };
 
