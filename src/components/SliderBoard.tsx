@@ -44,7 +44,7 @@ const SliderBoard = ({
           className="mySwiper"
         >
           {fetchedMovies?.map((movies, index) => (
-            <SwiperSlide virtualIndex={index} key={index}>
+            <SwiperSlide virtualIndex={index} key={index} className="swippers">
               <img
                 src={IMG_PATH + movies.backdrop_path}
                 alt={movies.title}

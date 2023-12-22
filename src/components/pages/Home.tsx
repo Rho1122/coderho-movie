@@ -26,10 +26,12 @@ const Home = () => {
 
   const handleMovie = () => {
     setMovieCat("movie");
+    setPageNo(1);
   };
 
   const handleTv = () => {
     setMovieCat("tv");
+    setPageNo(1);
   };
 
   const handleNext = () => {
@@ -37,7 +39,7 @@ const Home = () => {
   };
 
   const handlePrev = () => {
-    setPageNo(pageNo - 1);
+    setPageNo(pageNo === 1 ? 1 : pageNo - 1);
   };
 
   return (
