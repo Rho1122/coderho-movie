@@ -31,7 +31,7 @@ const MovieDisplayBoard = ({
         <MovieCards
           cardImage={POSTER_IMG_PATH + movie.poster_path}
           cardHeading={
-            movie.title.length > 15
+            movie.title?.length > 15
               ? movie.title.slice(0, 15) + ".."
               : movie.original_name || movie.title
           }

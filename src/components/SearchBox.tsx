@@ -37,7 +37,7 @@ const SearchBox = ({
             <ChevronLeftIcon marginLeft={1} />
           </Button>
           <Text fontSize="sm" paddingTop={4}>
-            Page {pageCount}
+            {pageCount}
           </Text>
           <Button size="sm" fontSize="sm" onClick={onNext}>
             Next
