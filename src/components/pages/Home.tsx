@@ -36,15 +36,17 @@ const Home = () => {
     setPageNo(pageNo + 1);
   };
 
+  const handlePrev = () => {
+    setPageNo(pageNo - 1);
+  };
+
   return (
     <>
-      <SimpleGrid>
-        <SliderBoard
-          movieCategory={movieCat}
-          pageNumber={pageNo}
-          sortBy={sortMovie}
-        />
-      </SimpleGrid>
+      <SliderBoard
+        movieCategory={"movie"}
+        pageNumber={1}
+        sortBy={"popularity"}
+      />
 
       <SimpleGrid paddingX={3} paddingTop={2}>
         <SortMovie onSelected={handleSortOrder} sortOrder={sortOrderList} />
@@ -52,6 +54,7 @@ const Home = () => {
           onMovie={handleMovie}
           onTv={handleTv}
           onNext={handleNext}
+          onPrev={handlePrev}
           pageCount={pageNo}
         />
       </SimpleGrid>

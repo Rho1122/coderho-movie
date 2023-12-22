@@ -18,7 +18,7 @@ const SideBarItem = ({
         overflow="hid
       "
       >
-        <Image src={sideBarImage} height={90} borderRadius={4} />
+        <Image src={sideBarImage} height={90} borderRadius="10px" />
       </Box>
       <Box padding={2}>
         <Heading as="h5" size="sm">

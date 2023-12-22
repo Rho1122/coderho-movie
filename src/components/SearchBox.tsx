@@ -1,14 +1,21 @@
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Text, Box, Button, HStack } from "@chakra-ui/react";
 
 interface SearchBoxProps {
   onMovie: () => void;
   onTv: () => void;
   onNext: () => void;
+  onPrev: () => void;
   pageCount: number;
 }
 
-const SearchBox = ({ onMovie, onTv, onNext, pageCount }: SearchBoxProps) => {
+const SearchBox = ({
+  onMovie,
+  onTv,
+  onNext,
+  onPrev,
+  pageCount,
+}: SearchBoxProps) => {
   return (
     <HStack paddingX={3}>
       <Button
@@ -25,6 +32,10 @@ const SearchBox = ({ onMovie, onTv, onNext, pageCount }: SearchBoxProps) => {
       </Button>
       <Box paddingLeft={3} height="px40">
         <HStack>
+          <Button size="sm" fontSize="sm" onClick={onPrev}>
+            Prev
+            <ChevronLeftIcon marginLeft={1} />
+          </Button>
           <Text fontSize="sm" paddingTop={4}>
             Page {pageCount}
           </Text>

@@ -14,8 +14,8 @@ const MovieCards = ({
   CardVote,
 }: MovieCardsProps) => {
   return (
-    <Card borderRadius={4} overflow="hidden">
-      <Image src={cardImage} />
+    <Card overflow="hidden">
+      <Image src={cardImage} borderRadius="10px" />
       <HStack paddingX={2} justifyContent="space-between">
         <Box>
           <Text padding={1} margin={1} fontWeight={700} fontSize="10px">
