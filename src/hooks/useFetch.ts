@@ -14,8 +14,7 @@ interface results {
     original_name: string;
     first_air_date: string
   }
-
-  interface useFetchProps {
+ interface useFetchProps {
     movieCategory: string;
     pageNumber: number;
   
@@ -29,8 +28,8 @@ const useFetch = ({movieCategory, pageNumber}: useFetchProps) => {
     const API_KEY = "67b5f626044ae34bc73f9ea8511cdfd2";
 
 useEffect(()=>{
-    const BASE_URL =
-        `https://api.themoviedb.org/3/discover/${movieCategory}?include_adult=false&include_video=false&language=en-US&page=${pageNumber}&sort_by=popularity.desc&api_key=`;
+   const BASE_URL =
+        `https://api.themoviedb.org/3/discover/${movieCategory}?&language=en-US&page=${pageNumber}&sort_by=popularity.desc&api_key=`;
         setIsLoading(true)
         fetch(BASE_URL + API_KEY)
         .then((response) => response.json())

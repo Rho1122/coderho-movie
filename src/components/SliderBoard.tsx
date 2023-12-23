@@ -8,6 +8,7 @@ import {
 import useFetch from "../hooks/useFetch";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
+import { Link } from "react-router-dom";
 
 interface SliderBoardProps {
   movieCategory: string;
@@ -46,14 +47,16 @@ const SliderBoard = ({ movieCategory, pageNumber }: SliderBoardProps) => {
                 className="slide-image"
               />
               <div className="info-box">
-                <h1 className="slide-title shadow-lg">{movies.title}</h1>
+                <h1 className="slide-title shadow">{movies.title}</h1>
                 <p>
                   {movies.overview
                     ? movies.overview.slice(0, 150) + "..."
                     : movies.overview}
                 </p>
                 <div className="btn btn-primary">
-                  <i className="fa-regular fa-circle-play"></i> Watch Now
+                  <Link to={`movie/${movies.id}`}>
+                    <i className="fa-regular fa-circle-play"></i> Watch Now
+                  </Link>
                 </div>
               </div>
             </SwiperSlide>

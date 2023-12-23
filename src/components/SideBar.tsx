@@ -2,6 +2,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import useFetch from "../hooks/useFetch";
 import SideBarItem from "./SideBarItem";
 import SideBarSkeleton from "./skeletons/SideBarSkeleton";
+import { Link } from "react-router-dom";
 
 interface SideBarProps {
   movieCategory: string;
@@ -23,16 +24,20 @@ const SideBar = ({ movieCategory, pageNumber, pageTitle }: SideBarProps) => {
       {isLoading &&
         sideBarSkeleton.map((skel) => <SideBarSkeleton key={skel} />)}
       {fetchedMovies
-        ?.map((movie, index) => (
-          <SideBarItem
-            sideBarImage={IMG_PATH + movie.poster_path}
-            sideBarHeading={movie.title ? movie.title : movie.original_name}
-            sideBarOverview={
-              movie.overview ? movie.overview.slice(0, 20) : movie.overview
-            }
-            key={index}
-          />
-        ))
+        ?.map((movie, index) => {
+          return (
+            <Link to={`/movie/${movie.id}`}>
+              <SideBarItem
+                sideBarImage={IMG_PATH + movie.poster_path}
+                sideBarHeading={movie.title ? movie.title : movie.original_name}
+                sideBarOverview={
+                  movie.overview ? movie.overview.slice(0, 20) : movie.overview
+                }
+                key={index}
+              />
+            </Link>
+          );
+        })
         .slice(0, 7)}
     </Box>
   );

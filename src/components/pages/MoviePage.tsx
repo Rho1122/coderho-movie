@@ -1,6 +1,7 @@
-import { Box, HStack, Image } from "@chakra-ui/react";
+import { Box, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import SideBar from "../SideBar";
 
 const MoviePage = () => {
   const { id } = useParams();
@@ -19,7 +20,6 @@ const MoviePage = () => {
     first_air_date: "",
   });
   const IMG_PATH = "https://image.tmdb.org/t/p/original/";
-  const POSTER_IMG_PATH = "https://image.tmdb.org/t/p/w200/";
   const API_KEY = "67b5f626044ae34bc73f9ea8511cdfd2";
 
   useEffect(() => {
@@ -55,15 +55,37 @@ const MoviePage = () => {
           <i className="play-icon fa-regular fa-circle-play"></i>
         </div>
       </div>
-      <Box>
-        <HStack padding={4}>
-          <Box>
+      <Box padding={4}>
+        <SimpleGrid
+          columns={{ base: 1, sm: 1, lg: 2, xl: 3 }}
+          spacing={4}
+          padding="30px"
+        >
+          <Box padding={4}>
             <Image
-              src={POSTER_IMG_PATH + movieResult.poster_path}
+              src={IMG_PATH + movieResult.poster_path}
               borderRadius="10px"
             />
           </Box>
-        </HStack>
+          <Box padding={4} marginTop="30px">
+            <Heading as="h4" size="md">
+              {movieResult.title}
+            </Heading>
+            <Text>Release Date: {movieResult.release_date}</Text>
+            <Text>Movie Oview: {movieResult.overview}</Text>
+            <Text>Movie Rating: {movieResult.vote_average}</Text>
+            <Text>Movie Original Name: {movieResult.original_name}</Text>
+          </Box>
+
+          <Box>
+            <SideBar
+              movieCategory="movie"
+              pageNumber={1}
+              pageTitle="Latest Movies"
+            />
+          </Box>
+        </SimpleGrid>
+
         <Link to="/">
           <div className="btn btn-primary">Return to movies</div>
         </Link>
