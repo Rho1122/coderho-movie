@@ -18,30 +18,24 @@ const SearchBox = ({
 }: SearchBoxProps) => {
   return (
     <HStack paddingX={3}>
-      <Button
-        size="sm"
-        marginRight={2}
-        onClick={onMovie}
-        padding={2}
-        colorScheme="blue"
-      >
+      <Button size="sm" onClick={onMovie} padding={2} colorScheme="blue">
         Movies
       </Button>
       <Button size="sm" onClick={onTv}>
-        TV
+        TV Series
       </Button>
-      <Box paddingLeft={3} height="px40">
+      <Box>
         <HStack>
           <Button size="sm" fontSize="sm" onClick={onPrev}>
+            <ChevronLeftIcon />
             Prev
-            <ChevronLeftIcon marginLeft={1} />
           </Button>
           <Text fontSize="sm" paddingTop={4}>
             {pageCount}
           </Text>
           <Button size="sm" fontSize="sm" onClick={onNext}>
             Next
-            <ChevronRightIcon marginLeft={1} />
+            <ChevronRightIcon />
           </Button>
         </HStack>
       </Box>

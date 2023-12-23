@@ -1,28 +1,14 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Grid, GridItem, Show, SimpleGrid } from "@chakra-ui/react";
 import SliderBoard from "../SliderBoard";
 import { useState } from "react";
 import SearchBox from "../SearchBox";
 import MovieDisplayBoard from "../MovieDisplayBoard";
-import SortMovie from "../SortMovie";
+
 import SideBar from "../SideBar";
 
 const Home = () => {
   const [movieCat, setMovieCat] = useState("movie");
   const [pageNo, setPageNo] = useState(1);
-  const [sortMovie, setSortMovie] = useState("popularity");
-
-  const sortOrderList = [
-    "popularity",
-    "primary_release_date",
-    "vote_average",
-    "vote_count",
-    "revenue",
-    "name",
-  ];
-
-  const handleSortOrder = (sortOrderList: string) => {
-    setSortMovie(sortOrderList);
-  };
 
   const handleMovie = () => {
     setMovieCat("movie");
@@ -44,14 +30,9 @@ const Home = () => {
 
   return (
     <>
-      <SliderBoard
-        movieCategory={"movie"}
-        pageNumber={1}
-        sortBy={"popularity"}
-      />
+      <SliderBoard movieCategory={"movie"} pageNumber={1} />
 
       <SimpleGrid paddingX={3} paddingTop={2}>
-        <SortMovie onSelected={handleSortOrder} sortOrder={sortOrderList} />
         <SearchBox
           onMovie={handleMovie}
           onTv={handleTv}
@@ -60,28 +41,31 @@ const Home = () => {
           pageCount={pageNo}
         />
       </SimpleGrid>
-      <SimpleGrid>
-        <MovieDisplayBoard
-          movieCategory={movieCat}
-          pageNumber={pageNo}
-          sortBy={sortMovie}
-        />
-        <Box>
-          <SideBar
-            movieCategory="movie"
-            pageNumber={1}
-            sortBy="popularity"
-            pageTitle="Latest Movies"
-          />
 
-          <SideBar
-            movieCategory="tv"
-            pageNumber={1}
-            sortBy="popularity"
-            pageTitle="TV Series"
+      <Grid
+        templateAreas={{ base: ` "main"`, lg: `"main aside"` }}
+        templateColumns={{ base: "1fr", lg: "1fr 300px" }}
+        gap={4}
+      >
+        <GridItem area={"main"}>
+          <MovieDisplayBoard
+            movieCategory={movieCat}
+            pageNumber={pageNo}
+            sectionTitle={movieCat.toLocaleUpperCase()}
           />
-        </Box>
-      </SimpleGrid>
+        </GridItem>
+
+        <Show above={"lg"}>
+          <GridItem area={"aside"}>
+            <SideBar
+              movieCategory="movie"
+              pageNumber={1}
+              pageTitle="Latest Movies"
+            />
+            <SideBar movieCategory="tv" pageNumber={1} pageTitle="TV Series" />
+          </GridItem>
+        </Show>
+      </Grid>
 
       <SimpleGrid>Footer</SimpleGrid>
     </>

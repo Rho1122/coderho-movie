@@ -6,19 +6,12 @@ import SideBarSkeleton from "./skeletons/SideBarSkeleton";
 interface SideBarProps {
   movieCategory: string;
   pageNumber: number;
-  sortBy: string;
   pageTitle: string;
 }
-const SideBar = ({
-  movieCategory,
-  pageNumber,
-  sortBy,
-  pageTitle,
-}: SideBarProps) => {
+const SideBar = ({ movieCategory, pageNumber, pageTitle }: SideBarProps) => {
   const { isLoading, fetchedMovies, IMG_PATH } = useFetch({
     movieCategory,
     pageNumber,
-    sortBy,
   });
 
   const sideBarSkeleton = [1, 2, 3, 4, 5, 6, 7];

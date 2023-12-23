@@ -18,10 +18,10 @@ interface results {
   interface useFetchProps {
     movieCategory: string;
     pageNumber: number;
-    sortBy: string
+  
   }
 
-const useFetch = ({movieCategory, pageNumber, sortBy}: useFetchProps) => {
+const useFetch = ({movieCategory, pageNumber}: useFetchProps) => {
     const [fetchedMovies, setFetchedMovies] = useState<results[]>();
     const [isLoading, setIsLoading] = useState(false);
     const IMG_PATH = "https://image.tmdb.org/t/p/original/"; 
@@ -30,7 +30,7 @@ const useFetch = ({movieCategory, pageNumber, sortBy}: useFetchProps) => {
 
 useEffect(()=>{
     const BASE_URL =
-        `https://api.themoviedb.org/3/discover/${movieCategory}?include_adult=false&include_video=false&language=en-US&page=${pageNumber}&sort_by=${sortBy}.desc&api_key=`;
+        `https://api.themoviedb.org/3/discover/${movieCategory}?include_adult=false&include_video=false&language=en-US&page=${pageNumber}&sort_by=popularity.desc&api_key=`;
         setIsLoading(true)
         fetch(BASE_URL + API_KEY)
         .then((response) => response.json())
@@ -43,8 +43,8 @@ useEffect(()=>{
             console.error(error)
             setIsLoading(false)
         })
-},[movieCategory, pageNumber, sortBy])
-  return {fetchedMovies, isLoading, IMG_PATH, POSTER_IMG_PATH, setFetchedMovies, setIsLoading, movieCategory, pageNumber, sortBy}
+},[movieCategory, pageNumber])
+  return {fetchedMovies, isLoading, IMG_PATH, POSTER_IMG_PATH, setFetchedMovies, setIsLoading, movieCategory, pageNumber}
 }
 
 export default useFetch

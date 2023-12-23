@@ -12,18 +12,12 @@ import "swiper/swiper-bundle.css";
 interface SliderBoardProps {
   movieCategory: string;
   pageNumber: number;
-  sortBy: string;
 }
 
-const SliderBoard = ({
-  movieCategory,
-  pageNumber,
-  sortBy,
-}: SliderBoardProps) => {
+const SliderBoard = ({ movieCategory, pageNumber }: SliderBoardProps) => {
   const { fetchedMovies, IMG_PATH } = useFetch({
     movieCategory,
     pageNumber,
-    sortBy,
   });
 
   return (
@@ -52,7 +46,7 @@ const SliderBoard = ({
                 className="slide-image"
               />
               <div className="info-box">
-                <h1 className="slide-title">{movies.title}</h1>
+                <h1 className="slide-title shadow-lg">{movies.title}</h1>
                 <p>
                   {movies.overview
                     ? movies.overview.slice(0, 150) + "..."
