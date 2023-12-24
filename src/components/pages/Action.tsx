@@ -2,6 +2,7 @@ import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MovieCards from "../MovieCards";
 import SearchBox from "../SearchBox";
+import { Link } from "react-router-dom";
 
 interface movies {
   adult: string;
@@ -80,13 +81,15 @@ const Action = ({ pageTitle }: ActionProps) => {
       <SimpleGrid columns={{ base: 2, sm: 3, md: 4, lg: 5, xl: 7 }} gap={4}>
         {moviesList?.map((movie, index) => {
           return (
-            <MovieCards
-              cardImage={POSTER_IMG_PATH + movie.poster_path}
-              cardDate={movie.release_date}
-              cardHeading={movie.title}
-              CardVote={movie.vote_average}
-              key={index}
-            />
+            <Link to={`/movie/${movie.id}`}>
+              <MovieCards
+                cardImage={POSTER_IMG_PATH + movie.poster_path}
+                cardDate={movie.release_date}
+                cardHeading={movie.title}
+                CardVote={movie.vote_average}
+                key={index}
+              />
+            </Link>
           );
         })}
       </SimpleGrid>
