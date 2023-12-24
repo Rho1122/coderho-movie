@@ -5,6 +5,7 @@ import SearchBox from "../SearchBox";
 import MovieDisplayBoard from "../MovieDisplayBoard";
 
 import SideBar from "../SideBar";
+import Action from "./Action";
 
 const Home = () => {
   const [movieCat, setMovieCat] = useState("movie");
@@ -50,6 +51,8 @@ const Home = () => {
             pageNumber={pageNo}
             sectionTitle={movieCat.toLocaleUpperCase()}
           />
+
+          <Action pageTitle="Top Rated" />
         </GridItem>
 
         <Show above={"lg"}>

@@ -1,4 +1,4 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MovieCards from "../MovieCards";
 import SearchBox from "../SearchBox";
@@ -18,9 +18,13 @@ interface movies {
   first_air_date: string;
 }
 
-const Action = () => {
+interface ActionProps {
+  pageTitle: string;
+}
+
+const Action = ({ pageTitle }: ActionProps) => {
   const [moviesList, setMovieList] = useState<movies[]>();
-  const [movieCategory, setMovieCategory] = useState("now_playing");
+  const [movieCategory, setMovieCategory] = useState("top_rated");
   const [pageNumber, setPageNumber] = useState(1);
 
   const POSTER_IMG_PATH = "https://image.tmdb.org/t/p/w200/";
@@ -42,8 +46,6 @@ const Action = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.results);
-
         setMovieList(data.results);
       })
       .catch((err) => console.error(err));
@@ -66,6 +68,7 @@ const Action = () => {
   return (
     <Box padding={4}>
       <Box>
+        <Heading paddingTop={3}>{pageTitle}</Heading>
         <SearchBox
           buttonList={movieCatego}
           onMovie={handleMovie}

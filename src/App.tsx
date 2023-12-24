@@ -12,7 +12,7 @@ function App() {
       <NavBar navList={menu} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="movies" element={<Action />} />
+        <Route path="movies" element={<Action pageTitle="" />} />
         <Route path="movie/:id" element={<MoviePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
