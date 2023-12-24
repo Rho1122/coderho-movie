@@ -24,7 +24,7 @@ const Home = () => {
     setPageNo(pageNo === 1 ? 1 : pageNo - 1);
   };
 
-  const buttonMenu = ["Movie", "TV Series"];
+  const buttonMenu = ["Movie", "TV"];
 
   return (
     <>
