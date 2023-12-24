@@ -29,7 +29,9 @@ const SideBar = ({ movieCategory, pageNumber, pageTitle }: SideBarProps) => {
             <Link to={`/movie/${movie.id}`} key={index}>
               <SideBarItem
                 sideBarImage={IMG_PATH + movie.poster_path}
-                sideBarHeading={movie.title ? movie.title : movie.original_name}
+                sideBarHeading={
+                  movie.title ? movie.title.slice(0, 20) : movie.original_name
+                }
                 sideBarOverview={
                   movie.overview ? movie.overview.slice(0, 20) : movie.overview
                 }

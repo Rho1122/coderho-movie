@@ -13,15 +13,11 @@ const SideBarItem = ({
 }: SideBarItemProps) => {
   return (
     <HStack margin={2}>
-      <Box
-        borderRadius={4}
-        overflow="hid
-      "
-      >
-        <Image src={sideBarImage} height={90} borderRadius="10px" />
+      <Box borderRadius={4} overflow="hidden" height={"90px"} width={"60px"}>
+        <Image src={sideBarImage} />
       </Box>
       <Box padding={2}>
-        <Heading as="h5" size="sm">
+        <Heading as="h6" size="sm">
           {sideBarHeading}
         </Heading>
         <Text>{sideBarOverview}</Text>
