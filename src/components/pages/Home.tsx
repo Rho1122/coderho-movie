@@ -10,13 +10,8 @@ const Home = () => {
   const [movieCat, setMovieCat] = useState("movie");
   const [pageNo, setPageNo] = useState(1);
 
-  const handleMovie = () => {
-    setMovieCat("movie");
-    setPageNo(1);
-  };
-
-  const handleTv = () => {
-    setMovieCat("tv");
+  const handleMovie = (item: string) => {
+    setMovieCat(item.toLowerCase());
     setPageNo(1);
   };
 
@@ -28,14 +23,16 @@ const Home = () => {
     setPageNo(pageNo === 1 ? 1 : pageNo - 1);
   };
 
+  const buttonMenu = ["Movie", "TV"];
+
   return (
     <>
       <SliderBoard movieCategory={"movie"} pageNumber={1} />
 
       <SimpleGrid paddingX={3} paddingTop={2}>
         <SearchBox
+          buttonList={buttonMenu}
           onMovie={handleMovie}
-          onTv={handleTv}
           onNext={handleNext}
           onPrev={handlePrev}
           pageCount={pageNo}

@@ -26,7 +26,7 @@ const SideBar = ({ movieCategory, pageNumber, pageTitle }: SideBarProps) => {
       {fetchedMovies
         ?.map((movie, index) => {
           return (
-            <Link to={`/movie/${movie.id}`}>
+            <Link to={`/movie/${movie.id}`} key={index}>
               <SideBarItem
                 sideBarImage={IMG_PATH + movie.poster_path}
                 sideBarHeading={movie.title ? movie.title : movie.original_name}

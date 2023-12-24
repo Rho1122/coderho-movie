@@ -6,21 +6,13 @@ import MoviePage from "./components/pages/MoviePage";
 import NavBar from "./components/NavBar";
 
 function App() {
-  const menu = [
-    "Home",
-    "Action",
-    "Adventure",
-    "Sci-Fiction",
-    "Comedy",
-    "Anime",
-    "TV Series",
-  ];
+  const menu = ["Home", "Movies", "TV Series"];
   return (
     <>
       <NavBar navList={menu} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="action" element={<Action />} />
+        <Route path="movies" element={<Action />} />
         <Route path="movie/:id" element={<MoviePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
