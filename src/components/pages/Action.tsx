@@ -51,7 +51,7 @@ const Action = ({ pageTitle }: ActionProps) => {
       .catch((err) => console.error(err));
   }, [movieCategory, pageNumber]);
 
-  const movieCatego = ["Now_playing", "Top_rated", "Upcoming"];
+  const movieCatego = ["Top_rated", "Upcoming"];
 
   const handleMovie = (item: string) => {
     setMovieCategory(item.toLowerCase());
