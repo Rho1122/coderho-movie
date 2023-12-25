@@ -53,7 +53,7 @@ const SliderBoard = ({ movieCategory, pageNumber }: SliderBoardProps) => {
                     ? movies.overview.slice(0, 150) + "..."
                     : movies.overview}
                 </p>
-                <div className="btn btn-primary">
+                <div className="slider-button btn btn-primary">
                   <Link to={`movie/${movies.id}`}>
                     <i className="fa-regular fa-circle-play"></i> Watch Now
                   </Link>
