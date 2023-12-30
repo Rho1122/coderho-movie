@@ -26,7 +26,6 @@ const SliderBoard = ({ movieCategory, pageNumber }: SliderBoardProps) => {
       <div className="swiper-cover">
         <Swiper
           modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={50}
           slidesPerView={1}
           loop={true}
           navigation
