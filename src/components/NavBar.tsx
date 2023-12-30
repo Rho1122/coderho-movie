@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import myLogo from "../assets/logo.png";
 
 interface NavBarProps {
   navList: string[];
@@ -13,7 +14,13 @@ const NavBar = ({ navList }: NavBarProps) => {
     >
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
-          CODERHO MOVIE
+          <img
+            src={myLogo}
+            alt="logo"
+            height="50px"
+            width="150px"
+            className="pt-2"
+          />
         </Link>
         <button
           className="navbar-toggler"
