@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import MovieCards from "../MovieCards";
 import SearchBox from "../SearchBox";
 import { Link } from "react-router-dom";
+import MovieBoardSkeleton from "../skeletons/MovieBoardSkeleton";
 
 interface movies {
   adult: string;
@@ -27,6 +28,7 @@ const Action = ({ pageTitle }: ActionProps) => {
   const [moviesList, setMovieList] = useState<movies[]>();
   const [movieCategory, setMovieCategory] = useState("top_rated");
   const [pageNumber, setPageNumber] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const POSTER_IMG_PATH = "https://image.tmdb.org/t/p/w200/";
   const API_KEY = "67b5f626044ae34bc73f9ea8511cdfd2";
@@ -40,7 +42,9 @@ const Action = ({ pageTitle }: ActionProps) => {
           "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2N2I1ZjYyNjA0NGFlMzRiYzczZjllYTg1MTFjZGZkMiIsInN1YiI6IjY1MWJiMGQwNzQ1MDdkMDBlMjBmNjExYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.D95oUdjBO8_pO8piCp7rF8iH5qHhP_f92BTkjOO-EyU",
       },
     };
-
+    {
+      setIsLoading(true);
+    }
     fetch(
       `https://api.themoviedb.org/3/movie/${movieCategory}?language=en-US&page=${pageNumber}&api_key=${API_KEY}`,
       options
@@ -48,11 +52,16 @@ const Action = ({ pageTitle }: ActionProps) => {
       .then((response) => response.json())
       .then((data) => {
         setMovieList(data.results);
+        setIsLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setIsLoading(false);
+      });
   }, [movieCategory, pageNumber]);
 
   const movieCatego = ["Top_rated", "Upcoming"];
+  const pageSkeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   const handleMovie = (item: string) => {
     setMovieCategory(item.toLowerCase());
@@ -79,6 +88,8 @@ const Action = ({ pageTitle }: ActionProps) => {
         />
       </Box>
       <SimpleGrid columns={{ base: 2, sm: 3, md: 4, lg: 5, xl: 7 }} gap={4}>
+        {isLoading &&
+          pageSkeleton.map((skel) => <MovieBoardSkeleton key={skel} />)}
         {moviesList?.map((movie, index) => {
           return (
             <Link to={`/movie/${movie.id}`} key={index}>

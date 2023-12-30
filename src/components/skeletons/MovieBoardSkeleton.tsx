@@ -9,9 +9,9 @@ import {
 
 const MovieBoardSkeleton = () => {
   return (
-    <Card borderRadius={4}>
+    <Card borderRadius="20px">
       <Skeleton>
-        <Image height={300} width={250} />
+        <Image height={200} width={250} />
       </Skeleton>
       <CardHeader>
         <SkeletonText

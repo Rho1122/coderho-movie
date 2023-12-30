@@ -34,13 +34,12 @@ useEffect(()=>{
         fetch(BASE_URL + API_KEY)
         .then((response) => response.json())
         .then((data)=> {
-            console.log(data.results);
-            setFetchedMovies(data.results)
-            setIsLoading(false)
+            setFetchedMovies(data.results);
+            setIsLoading(false);
         })
         .catch(error => {
-            console.error(error)
-            setIsLoading(false)
+            console.error(error);
+            setIsLoading(false);
         })
 },[movieCategory, pageNumber])
   return {fetchedMovies, isLoading, IMG_PATH, POSTER_IMG_PATH, setFetchedMovies, setIsLoading, movieCategory, pageNumber}

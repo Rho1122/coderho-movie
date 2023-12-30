@@ -20,6 +20,7 @@ const MovieDisplayBoard = ({
     pageNumber,
   });
   const Skeletions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const movieTitleMaxLength = 15;
   return (
     <>
       <Heading as={"h4"} size={"md"} paddingLeft="20px">
@@ -39,14 +40,14 @@ const MovieDisplayBoard = ({
               <MovieCards
                 cardImage={POSTER_IMG_PATH + movie.poster_path}
                 cardHeading={
-                  movie.title?.length > 15
+                  movie.title?.length > movieTitleMaxLength
                     ? movie.title.slice(0, 15) + ".."
                     : movie.original_name || movie.title
                 }
                 cardDate={
                   movie.release_date
                     ? movie.release_date.slice(0, 4)
-                    : movie.first_air_date.slice(0, 4)
+                    : movie.first_air_date
                 }
                 CardVote={movie.vote_average}
                 key={movie.id}
