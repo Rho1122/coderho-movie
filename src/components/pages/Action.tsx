@@ -81,7 +81,7 @@ const Action = ({ pageTitle }: ActionProps) => {
       <SimpleGrid columns={{ base: 2, sm: 3, md: 4, lg: 5, xl: 7 }} gap={4}>
         {moviesList?.map((movie, index) => {
           return (
-            <Link to={`/movie/${movie.id}`}>
+            <Link to={`/movie/${movie.id}`} key={index}>
               <MovieCards
                 cardImage={POSTER_IMG_PATH + movie.poster_path}
                 cardDate={movie.release_date}

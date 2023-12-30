@@ -39,21 +39,21 @@ const MoviePage = () => {
       .then((response) => response.json())
       .then((data) => {
         setMovieResult(data);
-        console.log(data);
       })
       .catch((err) => console.error(err));
   }, [id]);
   return (
     <>
       <div className="movie-result-holder">
-        <img
-          src={IMG_PATH + movieResult.backdrop_path}
-          className="movie-page-image"
-          alt={movieResult.title}
-        />
-        <div className="movie-shadow">
-          <i className="play-icon fa-regular fa-circle-play"></i>
-        </div>
+        <iframe
+          width="100%"
+          height="615"
+          src="https://www.youtube.com/embed/FV3bqvOHRQo?si=1gTmE3qAm63Scbon"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        ></iframe>
       </div>
       <Box padding={4}>
         <SimpleGrid
