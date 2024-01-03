@@ -2,25 +2,56 @@ import { Box, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import SideBar from "../SideBar";
+import YouTube, { YouTubeProps } from "react-youtube";
+
+interface results {
+  id: string;
+  iso_639_1: string;
+  iso_3166_1: string;
+  key: string;
+  name: string;
+  official: true;
+  published_at: string;
+  site: string;
+  size: number;
+  type: string;
+}
+
+interface movie {
+  adult: "";
+  backdrop_path: "";
+  id: "";
+  title: "";
+  popularity: "";
+  poster_path: "";
+  release_date: "";
+  vote_average: "";
+  vote_count: "";
+  overview: "";
+  original_name: "";
+  first_air_date: "";
+  videos: results[];
+}
 
 const MoviePage = () => {
   const { id } = useParams();
-  const [movieResult, setMovieResult] = useState({
-    adult: "",
-    backdrop_path: "",
-    id: "",
-    title: "",
-    popularity: "",
-    poster_path: "",
-    release_date: "",
-    vote_average: "",
-    vote_count: "",
-    overview: "",
-    original_name: "",
-    first_air_date: "",
-  });
+  const [movieResult, setMovieResult] = useState<movie>();
   const IMG_PATH = "https://image.tmdb.org/t/p/original/";
   const API_KEY = "67b5f626044ae34bc73f9ea8511cdfd2";
+
+  const onPlayerReady: YouTubeProps["onReady"] = (event) => {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  };
+
+  const opts: YouTubeProps["opts"] = {
+    height: "650",
+    width: "100%",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 0,
+    },
+  };
 
   useEffect(() => {
     const options = {
@@ -33,27 +64,33 @@ const MoviePage = () => {
     };
 
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}?&api_key=${API_KEY}`,
+      `https://api.themoviedb.org/3/movie/${id}?&api_key=${API_KEY}&append_to_response=videos,`,
       options
     )
       .then((response) => response.json())
       .then((data) => {
         setMovieResult(data);
+        console.log(data);
       })
       .catch((err) => console.error(err));
   }, [id]);
+
   return (
     <>
       <div className="movie-result-holder">
-        <iframe
-          width="100%"
-          height="615"
-          src="https://www.youtube.com/embed/FV3bqvOHRQo?si=1gTmE3qAm63Scbon"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
+        {movieResult?.videos.results.map((video, index) => (
+          <div key={index}>
+            {video.name === "Official Trailer" ? (
+              <YouTube
+                videoId={video.key}
+                opts={opts}
+                onReady={onPlayerReady}
+              />
+            ) : (
+              ""
+            )}
+          </div>
+        ))}
       </div>
       <Box padding={4}>
         <SimpleGrid
@@ -63,18 +100,18 @@ const MoviePage = () => {
         >
           <Box padding={4}>
             <Image
-              src={IMG_PATH + movieResult.poster_path}
+              src={IMG_PATH + movieResult?.poster_path}
               borderRadius="10px"
             />
           </Box>
           <Box padding={4} marginTop="30px">
             <Heading as="h4" size="md">
-              {movieResult.title}
+              {movieResult?.title}
             </Heading>
-            <Text>Release Date: {movieResult.release_date}</Text>
-            <Text>Movie Oview: {movieResult.overview}</Text>
-            <Text>Movie Rating: {movieResult.vote_average}</Text>
-            <Text>Movie Original Name: {movieResult.original_name}</Text>
+            <Text>Release Date: {movieResult?.release_date}</Text>
+            <Text>Movie Oview: {movieResult?.overview}</Text>
+            <Text>Movie Rating: {movieResult?.vote_average}</Text>
+            <Text>Movie Original Name: {movieResult?.original_name}</Text>
           </Box>
 
           <Box>
