@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="movies" element={<Action pageTitle="" />} />
-        <Route path="movie/:id" element={<MoviePage />} />
+        <Route path="movie/:id/" element={<MoviePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

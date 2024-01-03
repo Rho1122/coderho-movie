@@ -46,7 +46,7 @@ const SliderBoard = ({ movieCategory, pageNumber }: SliderBoardProps) => {
                 className="slide-image"
               />
               <div className="info-box">
-                <h1 className="slide-title shadow">{movies.title}</h1>
+                <h1 className="slide-title">{movies.title}</h1>
                 <p>
                   {movies.overview
                     ? movies.overview.slice(0, 150) + "..."
