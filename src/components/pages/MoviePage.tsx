@@ -61,7 +61,7 @@ const MoviePage = () => {
       .catch((err) => console.error(err));
   }, [id]);
 
-  const youtubeUrl = "https://www.youtube.com/embed/3FMdCZCuyCc?si=";
+  const youtubeUrl = "https://www.youtube.com/embed/";
   return (
     <>
       <div className="movie-result-holder">
