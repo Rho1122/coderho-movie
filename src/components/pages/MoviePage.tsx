@@ -3,19 +3,17 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import SideBar from "../SideBar";
 
-interface moveilist {
-  results: {
-    id: string;
-    iso_639_1: string;
-    iso_3166_1: string;
-    key: string;
-    name: string;
-    official: true;
-    published_at: string;
-    site: string;
-    size: number;
-    type: string;
-  };
+interface movieList {
+  id: string;
+  iso_639_1: string;
+  iso_3166_1: string;
+  key: string;
+  name: string;
+  official: true;
+  published_at: string;
+  site: string;
+  size: number;
+  type: string;
 }
 
 interface movie {
@@ -31,7 +29,7 @@ interface movie {
   overview: "";
   original_name: "";
   first_air_date: "";
-  videos: moveilist[];
+  videos: { results: movieList[] };
 }
 
 const MoviePage = () => {
