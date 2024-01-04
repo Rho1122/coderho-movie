@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import SideBar from "../SideBar";
 import YouTube, { YouTubeProps } from "react-youtube";
 
-interface results {
+interface moveilist {
   id: string;
   iso_639_1: string;
   iso_3166_1: string;
@@ -30,7 +30,7 @@ interface movie {
   overview: "";
   original_name: "";
   first_air_date: "";
-  videos: results[];
+  videos: moveilist[];
 }
 
 const MoviePage = () => {
@@ -48,7 +48,7 @@ const MoviePage = () => {
     height: "650",
     width: "100%",
     playerVars: {
-      // https://developers.google.com/youtube/player_parameters
+      origin: "https://developers.google.com/youtube/player_parameters",
       autoplay: 0,
     },
   };
