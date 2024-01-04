@@ -39,20 +39,6 @@ const MoviePage = () => {
   const IMG_PATH = "https://image.tmdb.org/t/p/original/";
   const API_KEY = "67b5f626044ae34bc73f9ea8511cdfd2";
 
-  const onPlayerReady: YouTubeProps["onReady"] = (event) => {
-    // access to player in all event handlers via event.target
-    event.target.pauseVideo();
-  };
-
-  const opts: YouTubeProps["opts"] = {
-    height: "650",
-    width: "100%",
-    playerVars: {
-      origin: "https://developers.google.com/youtube/player_parameters",
-      autoplay: 0,
-    },
-  };
-
   useEffect(() => {
     const options = {
       method: "GET",
@@ -75,17 +61,21 @@ const MoviePage = () => {
       .catch((err) => console.error(err));
   }, [id]);
 
+  const youtubeUrl = "https://www.youtube.com/embed/3FMdCZCuyCc?si=";
   return (
     <>
       <div className="movie-result-holder">
         {movieResult?.videos.results.map((video, index) => (
           <div key={index}>
             {video.name === "Official Trailer" ? (
-              <YouTube
-                videoId={video.key}
-                opts={opts}
-                onReady={onPlayerReady}
-              />
+              <iframe
+                width="100%"
+                height="650"
+                src={youtubeUrl + video.key}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
             ) : (
               ""
             )}
