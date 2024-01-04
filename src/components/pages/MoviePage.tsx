@@ -2,19 +2,20 @@ import { Box, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import SideBar from "../SideBar";
-import YouTube, { YouTubeProps } from "react-youtube";
 
 interface moveilist {
-  id: string;
-  iso_639_1: string;
-  iso_3166_1: string;
-  key: string;
-  name: string;
-  official: true;
-  published_at: string;
-  site: string;
-  size: number;
-  type: string;
+  results: {
+    id: string;
+    iso_639_1: string;
+    iso_3166_1: string;
+    key: string;
+    name: string;
+    official: true;
+    published_at: string;
+    site: string;
+    size: number;
+    type: string;
+  };
 }
 
 interface movie {
