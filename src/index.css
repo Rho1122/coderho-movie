@@ -82,6 +82,7 @@ margin-right: 10px;
 
 .info-box p{
     display: block;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
 }
 
 .slider-button {

@@ -66,8 +66,6 @@ const Home = () => {
           </GridItem>
         </Show>
       </Grid>
-
-      <SimpleGrid>Footer</SimpleGrid>
     </>
   );
 };
