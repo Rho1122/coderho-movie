@@ -2,13 +2,26 @@
 margin: 0;
 }
 
+:root {
+    --my-large-font-wt:900;
+}
+
 /* ========slider style=====*/
 .swiper-cover {
 position: relative;
 }
 
-.mySwiper {
-    position: relative;
+.swiper-cover::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgb(0,0,10);
+    background: linear-gradient(194deg, rgba(0,0,10,0.41222426470588236) 0%, rgba(0,11,13,1) 69%);
+    z-index: 2;
 }
 
 .slide-image {
@@ -17,6 +30,13 @@ position: relative;
     object-fit: cover;
 }
 
+.slider-description-icon {
+    display: flex;
+    margin: 5px 0 10px 0;
+    justify-content: center;
+    align-items: center;
+    
+}
 
 .info-box {
     position: absolute;
@@ -28,12 +48,14 @@ position: relative;
     flex-direction: column;
     justify-content: center;  
     align-items: left;
+    z-index: 10;    
 }
 
 .info-box  h1{
    font-size: 1.5rem;
-   text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
    text-align: center;
+   font-weight: var(--my-large-font-wt);
+
 }
 
 .info-box p{
@@ -41,11 +63,10 @@ position: relative;
 }
 
 .slider-button {
-    padding: 12px 25px;
+    padding: 12px 17px;
     border-radius: 20px;
     align-items: center;
     display: flex;
-    width: 250px;
     justify-content: center;
     margin: auto;
 }
@@ -54,6 +75,8 @@ position: relative;
 font-size: 20px;
 margin-right: 10px;
 }
+
+
 @media screen and (min-width: 992px) {
     .slide-image {
         width: 100%;
@@ -67,7 +90,7 @@ margin-right: 10px;
     bottom: 140px;
     left: 70px;
     font-weight: 700;
-    z-index: 4;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     justify-content: center; 
@@ -76,21 +99,24 @@ margin-right: 10px;
 
 .info-box  h1{
    font-size: 3rem;
-   z-index: 4;
+   z-index: 5;
    text-align: left;
+}
+
+.slider-description-icon {
+    justify-content: left;
 }
 
 .info-box p{
     display: block;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+    z-index: 10;
 }
 
 .slider-button {
-    padding: 12px 25px;
+    padding: 12px 17px;
     border-radius: 20px;
     align-items: center;
     display: flex;
-    width: 250px;
     justify-content: center;
     margin: 0;
 }

@@ -23,7 +23,7 @@ const SliderBoard = ({ movieCategory, pageNumber }: SliderBoardProps) => {
 
   return (
     <>
-      <div className="swiper-cover">
+      <div>
         <Swiper
           modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
           slidesPerView={1}
@@ -38,7 +38,11 @@ const SliderBoard = ({ movieCategory, pageNumber }: SliderBoardProps) => {
           className="mySwiper"
         >
           {fetchedMovies?.map((movies, index) => (
-            <SwiperSlide virtualIndex={index} key={index} className="swippers">
+            <SwiperSlide
+              virtualIndex={index}
+              key={index}
+              className="swiper-cover"
+            >
               <img
                 src={IMG_PATH + movies.backdrop_path}
                 alt={movies.title}
@@ -47,21 +51,42 @@ const SliderBoard = ({ movieCategory, pageNumber }: SliderBoardProps) => {
               />
               <div className="info-box">
                 <h1 className="slide-title">{movies.title}</h1>
+
+                <div className="slider-description-icon">
+                  <button type="submit" className="btn btn-warning btn-sm">
+                    HD
+                  </button>
+                  <span className="mx-3">
+                    <i className="fa-solid fa-star text-warning"></i>
+                    {movies.popularity}
+                  </span>
+                  <span>
+                    <i className="fa-regular fa-clock"></i>
+                    {movies.release_date.slice(0, 4)}
+                  </span>
+
+                  <span className="mx-3">{movies.adult ? "18+" : "PG"}</span>
+                </div>
                 <p>
                   {movies.overview
                     ? movies.overview.slice(0, 150) + "..."
                     : movies.overview}
                 </p>
-                <div className="slider-button btn btn-primary">
-                  <Link to={`movie/${movies.id}`}>
-                    <i className="fa-regular fa-circle-play"></i> Watch Now
-                  </Link>
+                <div className="button-slide d-flex">
+                  <div className="slider-button btn btn-primary">
+                    <Link to={`movie/${movies.id}`}>
+                      <i className="fa-regular fa-circle-play"></i> Watch Now
+                    </Link>
+                  </div>
+
+                  <div className="slider-button btn btn-outline-primary mx-2">
+                    <Link to={`movie/${movies.id}`}>Add a favorite</Link>
+                  </div>
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="slider-shadow"></div>
       </div>
     </>
   );
