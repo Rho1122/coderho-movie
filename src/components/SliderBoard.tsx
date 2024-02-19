@@ -58,7 +58,7 @@ const SliderBoard = ({ movieCategory, pageNumber }: SliderBoardProps) => {
                   </button>
                   <span className="mx-3">
                     <i className="fa-solid fa-star text-warning"></i>
-                    {movies.popularity}
+                    {movies.vote_average}
                   </span>
                   <span>
                     <i className="fa-regular fa-clock"></i>
